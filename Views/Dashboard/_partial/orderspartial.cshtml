@@ -1,0 +1,62 @@
+﻿
+@{
+
+}
+
+
+
+<div class="contianer">
+    <div class="row">
+        <div class="col">
+            <div class="row mt-5">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <table class="table text-center">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>رقم الطلب</th>
+                                        <th>اسم العميل</th>
+                                        <th>اسم المنتج</th>
+                                        <th>الكمية</th>
+                                        <th>تاريخ الطلب</th>
+                                        <th>حالة الطلب</th>
+                                        <th class="text-center" colspan="2">إجراءات</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @if (Model != null){
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.Id</td>
+                                            <td>@item.OrdersId</td>
+                                            <td>@item.CustomerId</td> <!-- اسم العميل -->
+                                            <td>@item.Products_id</td> <!-- اسم المنتج -->
+                                            <td>@item.Quantity</td> <!-- الكمية -->
+                                            <td>@item.OrderDate</td> <!-- تاريخ الطلب -->
+                                            <td>@item.StatusId</td> <!-- حالة الطلب -->
+                                            <td>
+                                                <a asp-action="DeleteOrders" asp-route-id="@item.Id">
+                                                    <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                    }
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+    </div>
+</div>
+

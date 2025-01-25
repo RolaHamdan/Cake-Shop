@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Products>
+
+
+@{
+}
+
+<div class="container" style="direction: rtl;">
+    <div class="row mt-4">
+        @foreach (var items in Model)
+        {
+            <div class="col-md-4 mb-4">
+               
+                <div class="card">
+                    <!-- عرض الصورة في أعلى الكارد -->
+                    <img src="/images/@items.Image" class="card-img-top" alt="صورة الكيك" style="object-fit: cover; height: 200px;">
+
+                    <div class="card-body text-center">
+                        <!-- محتوى النصوص -->
+                        <h5 class="card-title">@items.Name</h5>
+                    @*     <p class="card-text">وصف الكيك: @items.Description</p> *@
+                        <p class="card-text">فئة الكيك: @items.Category</p>
+                        <p class="card-text">السعر: @items.Price</p>
+                        <a href="/Home/Details/@items.Id" class="btn btn-primary"> التفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+          
+        }
+    </div>
+</div>

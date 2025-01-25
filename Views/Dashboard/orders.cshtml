@@ -1,0 +1,100 @@
+﻿@model List<Orders>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var products = ViewBag.Products;
+    var customers = ViewBag.Customers;
+    var status = ViewBag.OrderStatus;
+    var Getproducts = ViewBag.getproducts;
+
+}
+
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <form asp-action="CreateNewOrders" method="post">
+                        <div class="row">
+
+                            <div class="col">
+                                <label class="from-label ">  رقم الطلب  </label>
+                                <input type="text" name="OrderId" class="from-control"  />
+
+                            </div>
+
+                            <div class="col">
+                                <label class="form-label">اسم المنتج</label>
+                                <select class="form-select" name="ProductId">
+                                    <option>اختر البيانات</option>
+                                    @foreach (var item in products)
+                                    {
+                                        <option value="@item.Id">@item.Name</option> 
+                                    }
+                                </select>
+                            </div>
+
+                 
+
+                        </div>
+
+                        <div class="row">
+
+
+                            <div class="col">
+                                <label class="from-label "> الكمية  </label>
+                                <input type="number" name="Quantity" class="from-control" />
+
+                            </div>
+
+                            <div class="col">
+                                <label class="from-label "> تاريخ الطلب  </label>
+                                <input type="datetime" name="OrderDate" class="from-control" />
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label class="form-label">اسم العميل</label>
+                                <select class="form-select" name="Customer_id">
+                                    <option>اختر العميل</option>
+                                    @foreach (var item in customers)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+
+
+                            <div class="col">
+                                <label class="form-label">حالة الطلب</label>
+                                <select class="form-select" name="StatusId">
+                                    <option>اختر الحالة</option>
+                                    @foreach (var item in status)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col text-center">
+                                <button type="submit" class="btn-hover color-1">حفظ </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @* <div id="orderscontainer"> *@
+    @Html.Partial("_partial/orderspartial", Model)
+    </div>
+    </div>
+
+

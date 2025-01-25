@@ -1,0 +1,159 @@
+﻿@model IEnumerable<Products>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="modal" tabindex="-1" id="del">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">  تأكيد الحدف</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>هل بالفعل تريد حذف هذا السجل</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء الامر</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="confirm_deletes()"> حذف</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <form asp-action="CreateNewProducts" method="post" enctype="multipart/form-data">
+                        <div class="row">
+
+                            <div class="col">
+                                <label class="from-label ">  رقم المنتج  </label>
+                                <input type="text" name="ProductId" class="from-control" />
+                                <span class="text-danger" asp-validation-for="@Model.First().ProductId"></span>
+
+                            </div>
+                            <div class="col">
+                                <label class="from-label ">  اسم الكيك </label>
+                                <input type="text" name="Name" class="from-control" />
+                              @*   <span class="text-danger" asp-validation-for="@Model.First().Name"></span> *@
+
+                            </div>
+
+                            <div class="col">
+                                <label class="from-label "> تفاصيل الكيك </label>
+                                <input type="text" name="Description" class="from-control"  />
+                                <span class="text-danger" asp-validation-for="@Model.First().Description"></span>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label class="from-label "> السعر </label>
+                                <input type="text" name="Price" class="from-control" />
+                                <span class="text-danger" asp-validation-for="@Model.First().Price"></span>
+
+                            </div>
+
+                            <div class="col">
+                                <label class="from-label "> فئة الكيك</label>
+                                <input type="text" name="Category" class="from-control"  />
+                                <span class="text-danger" asp-validation-for="@Model.First().Category"></span>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label class="from-label "> صوره الكيك </label>
+                                <input type="file" name="photo" class="from-control"/>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col text-center">
+                                <button type="submit" class="btn-hover color-1">حفظ </button>
+                            </div>
+                        </div>
+
+                        
+                        <div class="row">
+                            <div class="col">
+                                <h1 class="alert alert-secondary"> @TempData["Save"]</h1>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+@*     <div class="row">
+        <div class="col">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <form asp-action="Products" >
+                    <label class="form-label"> بحث - تصفيه</label>
+                            <input type="text" class="form-control" name="name" asp-action="index" />
+                         <div class="row">
+                             <div class="col text-center">
+                                 <button type="submit" class="btn btn-primary">بحث</button>
+                             </div>
+                         </div>
+
+                           <div class="row">
+                             <div class="col text-center">
+                                <a asp-action="Products">ازالة التصفية </a>
+                             </div>
+                         </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+ *@
+
+
+
+
+
+    <div class="row">
+        <div class="col">
+            <div class="card mt-5">
+                <div class="card-body">
+                  
+                        <label class="form-label">  بحث متقدم  </label>
+                    <input type="text" class="form-control" name="name" oninput="Advance_search(this.value)" />
+                       
+
+                        <div class="row">
+                            <div class="col text-center">
+                                <a asp-action="Products">ازالة التصفية </a>
+                            </div>
+                        </div>
+
+          
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="productscontainer">
+        @Html.Partial("_partial/productspartial", Model)
+    </div>
+
+</div>

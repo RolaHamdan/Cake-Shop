@@ -1,0 +1,69 @@
+﻿@model Products
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <form asp-action="UpdateProducts" method="post">
+                        <div class="row">
+                            <input type="hidden" asp-for="@Model.Id" />
+                            <div class="col">
+                                <label class="from-label "> رقم المنتج </label>
+                                <input type="text" asp-for="@Model.ProductId" class="from-control" required />
+
+                            </div>
+                            <div class="col">
+                                <label class="from-label "> اسم الكيك</label>
+                                <input type="text" asp-for="@Model.Name" class="from-control" required />
+
+                            </div>
+
+                            <div class="col">
+                                <label class="from-label "> وصف الكيك</label>
+                                <input type="text" asp-for="@Model.Description" class="from-control" required />
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label class="from-label "> السعر </label>
+                                <input type="text" asp-for="@Model.Price" class="from-control" required />
+
+                            </div>
+
+                            <div class="col">
+                                <label class="from-label "> فئة الكيك</label>
+                                <input type="text" asp-for="@Model.Category" class="from-control" required />
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label class="from-label "> صوره الكيك  </label>
+                                <input type="text" asp-for="@Model.Image" class="from-control" required />
+
+                            </div>   
+
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col text-center">
+                                <button type="submit" class="btn-hover color-1">حفظ </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
